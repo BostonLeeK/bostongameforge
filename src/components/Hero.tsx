@@ -2,15 +2,16 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import RetroAudio from "./RetroAudio";
 
 export default function Hero() {
   const router = useRouter();
   const [credits, setCredits] = useState(0);
   const [isBlinking, setIsBlinking] = useState(false);
   const [showMessage, setShowMessage] = useState("");
+  const [isPlaying, setIsPlaying] = useState(false);
   const [canPlay, setCanPlay] = useState(false);
 
-  // Імітація вставки монети через пробіл
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.code === "Space") {
@@ -22,7 +23,6 @@ export default function Hero() {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, []);
 
-  // Блимання тексту
   useEffect(() => {
     const interval = setInterval(() => {
       setIsBlinking((prev) => !prev);
@@ -31,7 +31,6 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  // Автоматичне очищення повідомлень
   useEffect(() => {
     if (showMessage) {
       const timer = setTimeout(() => setShowMessage(""), 2000);
@@ -39,7 +38,6 @@ export default function Hero() {
     }
   }, [showMessage]);
 
-  // Оновлення стану canPlay при зміні кредитів
   useEffect(() => {
     setCanPlay(credits > 0);
   }, [credits]);
@@ -47,10 +45,10 @@ export default function Hero() {
   const insertCoin = () => {
     setCredits((prev) => prev + 1);
     setShowMessage("CREDIT ADDED!");
+    setIsPlaying(true);
 
-    // Звук вставки монети
     const audio = new Audio("/sounds/coin.mp3");
-    audio.play().catch(() => {}); // Ігноруємо помилку, якщо звук не завантажився
+    audio.play().catch(() => {});
   };
 
   const handlePlay = () => {
@@ -63,16 +61,13 @@ export default function Hero() {
   };
 
   const handleHighScores = () => {
-    // Для перегляду рекордів кредити не потрібні
     router.push("/high-scores");
   };
 
   return (
     <section className="relative h-screen flex items-center justify-center arcade-frame">
-      {/* Retro background */}
       <div className="absolute inset-0 pixel-bg opacity-20" />
 
-      {/* Message popup */}
       {showMessage && (
         <div
           className="absolute top-1/4 left-1/2 transform -translate-x-1/2 z-30 
@@ -84,7 +79,6 @@ export default function Hero() {
       )}
 
       <div className="container mx-auto px-4 relative z-20 text-center">
-        {/* Game title area */}
         <div className="mb-16 space-y-6">
           <h1 className="retro-text text-6xl">
             BOSTON
@@ -96,7 +90,6 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Action buttons */}
         <div className="flex gap-8 justify-center">
           <button
             onClick={handlePlay}
@@ -117,7 +110,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Arcade cabinet elements */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4">
         <button
           onClick={insertCoin}
@@ -134,16 +126,16 @@ export default function Hero() {
         </span>
       </div>
 
-      {/* Help text */}
       <div className="absolute bottom-20 left-1/2 -translate-x-1/2 text-xs text-[#666]">
         Press SPACE to insert coin
       </div>
 
-      {/* Decorative corners */}
       <div className="absolute top-4 left-4 w-8 h-8 border-t-4 border-l-4 border-[#ff2b2b]" />
       <div className="absolute top-4 right-4 w-8 h-8 border-t-4 border-r-4 border-[#ff2b2b]" />
       <div className="absolute bottom-4 left-4 w-8 h-8 border-b-4 border-l-4 border-[#ff2b2b]" />
       <div className="absolute bottom-4 right-4 w-8 h-8 border-b-4 border-r-4 border-[#ff2b2b]" />
+
+      <RetroAudio isPlaying={isPlaying} />
     </section>
   );
 }

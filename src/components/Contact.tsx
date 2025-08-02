@@ -99,6 +99,27 @@ export default function Contact() {
                   >
                     → Discord
                   </Link>
+                  <Link
+                    href="mailto:contact@bostongameforge.com"
+                    className="block text-gray-300 hover:text-[#ff2b2b] transition-colors"
+                    target="_blank"
+                  >
+                    → Email
+                  </Link>
+                </div>
+              </div>
+              <div className="bg-[#2a2a2a] p-6 rounded-lg border-l-4 border-[#ff2b2b]">
+                <h3 className="text-2xl font-bold mb-4 text-[#ff2b2b]">
+                  Support
+                </h3>
+                <div className="space-y-2">
+                  <Link
+                    href="https://patreon.com/ProjectNightOwl"
+                    className="block text-gray-300 hover:text-[#ff2b2b] transition-colors"
+                    target="_blank"
+                  >
+                    → Patreon
+                  </Link>
                 </div>
               </div>
             </div>
