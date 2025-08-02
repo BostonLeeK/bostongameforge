@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ArcadeBackground from "./ArcadeBackground";
 import RetroAudio from "./RetroAudio";
 
 export default function Hero() {
@@ -67,6 +68,7 @@ export default function Hero() {
   return (
     <section className="relative h-screen flex items-center justify-center arcade-frame">
       <div className="absolute inset-0 pixel-bg opacity-20" />
+      <ArcadeBackground isPlaying={isPlaying} />
 
       {showMessage && (
         <div
@@ -95,7 +97,7 @@ export default function Hero() {
             onClick={handlePlay}
             className={`arcade-button ${
               canPlay
-                ? "bg-[#ff2b2b] hover:bg-[#ff4444]"
+                ? "bg-[#ff2b2b] glitch-button"
                 : "bg-[#666] cursor-not-allowed"
             }`}
           >

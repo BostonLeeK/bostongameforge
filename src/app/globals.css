@@ -3,12 +3,16 @@
 @layer components {
   .retro-text {
     @apply relative font-black tracking-wider;
-    text-shadow: 4px 4px 0px #ff2b2b, 8px 8px 0px #1a1a1a;
+    text-shadow:
+      4px 4px 0px #ff2b2b,
+      8px 8px 0px #1a1a1a;
   }
 
   .retro-text-sm {
     @apply relative font-bold tracking-wider;
-    text-shadow: 2px 2px 0px #ff2b2b, 4px 4px 0px #1a1a1a;
+    text-shadow:
+      2px 2px 0px #ff2b2b,
+      4px 4px 0px #1a1a1a;
   }
 
   .arcade-button {
@@ -26,6 +30,12 @@
     @apply relative overflow-hidden rounded-lg 
            border-8 border-[#2a2a2a];
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .glitch-button:hover {
+    text-shadow:
+      -2px 0 #00ffff,
+      2px 0 #ff2b2b;
   }
 }
 
