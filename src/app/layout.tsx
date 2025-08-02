@@ -9,7 +9,7 @@ const pressStart2P = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "Boston Game Forge - Retro Gaming Studio",
+  title: "Boston Game Forge - Game Studio",
   description: "Crafting unforgettable gaming experiences",
 };
 
