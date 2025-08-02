@@ -9,7 +9,7 @@ export default function Games() {
     {
       title: "NIGHT OWL",
       description:
-        "A psychological VR horror-thriller that blends action and mind-bending puzzles. Navigate through a mysterious small town where an ancient evil takes form of a demonic owl.",
+        "Atmospheric VR horror game inspired by Twin Peaks and The X-Files. You play as a traveler stranded on Route 47, where a mysterious motel holds dark secrets and reality bends in impossible ways.",
       status: "IN DEVELOPMENT",
       tech: ["UNITY", "VR"],
       features: ["VR HORROR", "PUZZLES", "STEALTH"],
