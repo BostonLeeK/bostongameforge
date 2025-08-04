@@ -1,7 +1,15 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: "mail.adm.tools",
+  port: 465,
+  secure: true,
+  auth: {
+    user: "contact@bostongameforge.com",
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
 
 export async function POST(request: Request) {
   try {
@@ -15,9 +23,9 @@ export async function POST(request: Request) {
       );
     }
 
-    await resend.emails.send({
-      from: "Boston Game Forge <feedback@bostongameforge.com>",
-      to: ["feedback@bostongameforge.com"],
+    await transporter.sendMail({
+      from: "Boston Game Forge <contact@bostongameforge.com>",
+      to: "contact@bostongameforge.com",
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       text: `
